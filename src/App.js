@@ -4,9 +4,14 @@ import Web3 from 'web3'
 import Story from './abis/Story.json'
 import './SiteHeader.css'
 
+
+
+
+
 class App extends Component {
   componentDidMount() {
     this.loadBlockchainData()
+    this.connectWallet()
   }
 
   async loadBlockchainData() {
@@ -35,6 +40,34 @@ class App extends Component {
     console.log("Proposal 2 Name:", proposal2Name)
     console.log("Proposal 3 Name:", proposal3Name)
   }
+
+  async connectWallet() {
+    if (window.ethereum) { //check if Metamask is installed
+          try {
+              const address = await window.ethereum.enable(); //connect Metamask
+              const obj = {
+                      connectedStatus: true,
+                      status: "",
+                      address: address
+                  }
+                  return obj;
+
+          } catch (error) {
+              return {
+                  connectedStatus: false,
+                  status: "🦊 Connect to Metamask using the button on the top right."
+              }
+          }
+
+    } else {
+          return {
+              connectedStatus: false,
+              status: "🦊 You must install Metamask into your browser: https://metamask.io/download.html"
+          }
+        }
+  }
+
+
 
   constructor(props){
     super(props)
