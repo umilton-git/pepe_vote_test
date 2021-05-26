@@ -1,0 +1,5 @@
+{
+  "commands":{
+    "seed": "seed-test.js"
+  }
+}
