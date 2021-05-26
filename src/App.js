@@ -10,8 +10,8 @@ import './SiteHeader.css'
 
 class App extends Component {
   componentDidMount() {
-    this.loadBlockchainData()
     this.connectWallet()
+    this.loadBlockchainData()
   }
 
   async loadBlockchainData() {
